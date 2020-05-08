@@ -16,6 +16,7 @@ public class BasicGameApp extends GameApplication {
 
     @Override
     protected void initSettings (GameSettings settings) {
+
         settings.setWidth(600);
         settings.setHeight(600);
         settings.setTitle("Project B");
@@ -34,6 +35,7 @@ public class BasicGameApp extends GameApplication {
                 .at(300,300)
                 .view(new Rectangle(25,25,Color.YELLOW))
                 .buildAndAttach();
+
     }
 
     @Override
@@ -71,6 +73,7 @@ public class BasicGameApp extends GameApplication {
                 FXGL.getWorldProperties().increment("pixelsMoved", +5);
             }
         }, KeyCode.S);
+
     }
 
     @Override
