@@ -1,4 +1,5 @@
 package com.company;
+
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.dsl.FXGL;
@@ -13,23 +14,25 @@ import java.util.Map;
 
 public class BasicGameApp extends GameApplication {
 
-    private Entity player;
-
-    public static void main(String[] args) {
-        launch(args);
-    }
-
     @Override
-    protected void initSettings(GameSettings settings) {
+    protected void initSettings (GameSettings settings) {
+
         settings.setWidth(600);
         settings.setHeight(600);
         settings.setTitle("Project B");
         settings.setVersion("Θ");
     }
 
+    public static void main(String[] args) {
+	    launch(args);
+    }
+
+    private Entity player;
+
     @Override
     protected void initGame() {
-        player = FXGL.entityBuilder().at(300, 300)
+        player = FXGL.entityBuilder()
+                .at(300,300)
                 .view(new Rectangle(25,25,Color.YELLOW))
                 .buildAndAttach();
 
@@ -75,18 +78,16 @@ public class BasicGameApp extends GameApplication {
 
     @Override
     protected void initUI() {
-        Text textPixels = new Text("test lol");
+        Text textPixels = new Text();
         textPixels.setTranslateX(50);
         textPixels.setTranslateY(100);
-        textPixels.textProperty().bind(FXGL.getWorldProperties()
-                .intProperty("pixelsMoved").asString());
 
         FXGL.getGameScene().addUINode(textPixels);
+        textPixels.textProperty().bind(FXGL.getWorldProperties().intProperty("pixelsMoved").asString());
     }
 
     @Override
     protected void initGameVars(Map<String, Object> vars) {
         vars.put("pixelsMoved", 0);
     }
-
 }
