@@ -16,17 +16,10 @@ import java.util.*;
 
 public class BasicGameApp extends GameApplication {
 
-    int WORLD_WIDTH = 0;
-    int WORLD_HEIGHT = 0;
-    Random r = new Random();
-
     @Override
     protected void initSettings (GameSettings settings) {
-
-        settings.setWidth(600);
-        WORLD_WIDTH = 600;
-        settings.setHeight(600);
-        WORLD_HEIGHT = 600;
+        settings.setWidth(8*30);
+        settings.setHeight(8*30);
         settings.setTitle("Project B");
         settings.setVersion("Θ");
     }
@@ -53,16 +46,6 @@ public class BasicGameApp extends GameApplication {
 
         player.setScaleX(0.5);
         player.setScaleY(0.5);
-
-        for(int i = 0; i < 5; i++) {
-            FXGL.entityBuilder()
-                    .type(EntityType.MONEY)
-                    .at((r.nextInt(WORLD_WIDTH-44)),
-                            (r.nextInt(WORLD_WIDTH-44)))
-                    .viewWithBBox("money.png")
-                    .with(new CollidableComponent(true))
-                    .buildAndAttach();
-        }
     }
 
     @Override
@@ -140,7 +123,6 @@ public class BasicGameApp extends GameApplication {
 
             @Override
             protected void onCollisionBegin(Entity player, Entity money) {
-                money.setPosition(r.nextInt(WORLD_WIDTH-44), r.nextInt(WORLD_HEIGHT-44));
                 FXGL.play("money.wav");
                 FXGL.getWorldProperties().increment("moneyCollected", +1);
             }
