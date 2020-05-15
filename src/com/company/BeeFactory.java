@@ -35,7 +35,7 @@ public class BeeFactory implements EntityFactory {
         Entity player = FXGL.entityBuilder()
                 .from(data)
                 .type(BeeType.PLAYER)
-                .viewWithBBox(new Rectangle(8,8 , Color.YELLOW))
+                .viewWithBBox(new Rectangle(30,30 , Color.YELLOW))
                 .with(physics)
                 .with(new CollidableComponent(true))
                 .with(new PlayerComponent())

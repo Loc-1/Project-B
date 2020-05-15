@@ -2,6 +2,7 @@ package com.company;
 
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
+import com.almasb.fxgl.app.scene.Viewport;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.level.Level;
@@ -18,14 +19,14 @@ import static com.almasb.fxgl.dsl.FXGLForKtKt.getGameWorld;
 
 public class BeeGameApp extends GameApplication {
 
-    private static final int TILE_SIZE = 8;
+    private static final int TILE_SIZE = 32;
 
     private Entity player;
 
     @Override
     protected void initSettings (GameSettings settings) {
-        settings.setHeight(TILE_SIZE*30);
-        settings.setWidth(TILE_SIZE*30);
+        settings.setHeight(TILE_SIZE*20);
+        settings.setWidth(TILE_SIZE*20);
         settings.setTitle("Project B");
         settings.setVersion("Θ");
     }
@@ -77,9 +78,16 @@ public class BeeGameApp extends GameApplication {
     @Override
     protected void initGame() {
         getGameWorld().addEntityFactory(new BeeFactory());
-        Level level = setLevelFromMap("tmx/bee_map.tmx");
+        int lvlNum = 1 + (int)(Math.random() * ((3-1)+1));
+        Level level = setLevelFromMap("tmx/lvl_" + lvlNum +".tmx");
 
-        player = getGameWorld().spawn("player", 32,32);
+        player = getGameWorld().spawn("player", 288,416);
+
+        Viewport viewport = getGameScene().getViewport();
+
+        viewport.setBounds(-1500, -1500, 1500, 1500);
+        viewport.bindToEntity(player, getAppWidth()/2, getAppHeight()/2);
+        viewport.setLazy(true);
     }
 
     @Override

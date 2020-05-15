@@ -14,19 +14,19 @@ public class PlayerComponent extends Component {
     }
 
     public void left() {
-        physics.setVelocityX(-32);
+        physics.setVelocityX(-80);
     }
 
     public void right() {
-        physics.setVelocityX(32);
+        physics.setVelocityX(80);
     }
 
     public void down() {
-        physics.setVelocityY(32);
+        physics.setVelocityY(80);
     }
 
     public void up() {
-        physics.setVelocityY(-32);
+        physics.setVelocityY(-80);
     }
 
     public void stop() {
